@@ -1,0 +1,107 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "sompo-example-1",
+        "version": "1.0.0",
+        "description": "sompo-example-1"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/send/sms": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Data type for sms message",
+                        "schema": {
+                            "$ref": "#/definitions/SendSMSRequest"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Object Response",
+                        "schema": {
+                            "$ref": "#/definitions/sendSMSResponse"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "sendSmsResponse": {
+                                    "statusCode": "00",
+                                    "statusDescription": "Ok",
+                                    "detailCode": "000",
+                                    "detailDescription": "Message Sent"
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "sendSMS",
+                "summary": "Send message to partner",
+                "description": "API for integration with Zenvia partner"
+            }
+        }
+    },
+    "definitions": {
+        "SendSMSRequest": {
+            "title": "Root Type for SendRequest",
+            "description": "Minimal Message",
+            "type": "object",
+            "properties": {
+                "to": {
+                    "type": "string"
+                },
+                "from": {
+                    "type": "string"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "to": "5511974303208",
+                "from": "Sompo - Seguros",
+                "msg": "Sompo: Mensagem"
+            }
+        },
+        "sendSMSResponse": {
+            "title": "Root Type for sendSMSResponse",
+            "description": "Status code for messages",
+            "type": "object",
+            "properties": {
+                "sendSmsResponse": {
+                    "type": "object",
+                    "properties": {
+                        "statusCode": {
+                            "type": "string"
+                        },
+                        "statusDescription": {
+                            "type": "string"
+                        },
+                        "detailCode": {
+                            "type": "string"
+                        },
+                        "detailDescription": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "example": {
+                "sendSmsResponse": {
+                    "statusCode": "00",
+                    "statusDescription": "Ok",
+                    "detailCode": "000",
+                    "detailDescription": "Message Sent"
+                }
+            }
+        }
+    }
+}
